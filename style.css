@@ -6,19 +6,6 @@ body {
     padding: 0;
 }
 
-/*header{
-    position: fixed;
-    top: 0;
-    left: 450px;
-    width: 40%;
-    background-color: rgba(28, 28, 28, 0.834);
-    z-index: 1000;
-}
-
-main{
-    margin-top: 100px;
-}*/
-
 h1 {
     font-size: 2.4rem;
     color: rgb(250, 143, 200);
