@@ -1,0 +1,90 @@
+body {
+    font-family: Comic sans-serif;
+    background-color: rgb(28, 28, 28);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/*header{
+    position: fixed;
+    top: 0;
+    left: 450px;
+    width: 40%;
+    background-color: rgba(28, 28, 28, 0.834);
+    z-index: 1000;
+}
+
+main{
+    margin-top: 100px;
+}*/
+
+h1 {
+    font-size: 2.4rem;
+    color: rgb(250, 143, 200);
+    text-align: center;
+    margin-top: 20px;
+}
+
+#topicos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    color: rgb(250, 153, 205);
+}
+
+#topicos a{
+    color: rgb(250, 153, 205);
+    font-size: 1.3rem;
+}
+
+.categorias {
+    margin: 50px 0;
+    padding: 0 40px;
+}
+
+.categorias h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: white;
+    border-left: 4px solid rgb(250, 143, 200);
+    padding-left: 10px;
+}
+
+.filmes {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 25px;
+    padding-bottom: 10px;
+}
+
+.filmes::-webkit-scrollbar {
+    display: none;
+}
+
+.filmes a {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+img {
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    cursor: pointer;
+}
+footer a{
+    color: rgb(153, 153, 153);
+}
+footer{
+    text-align: center;
+    height: 60px;
+}

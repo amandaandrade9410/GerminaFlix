@@ -1,0 +1,86 @@
+body {
+    font-family: Comic sans-serif;
+    background-color: rgb(28, 28, 28);
+    color: rgb(233, 226, 226);
+    line-height: 1.6;
+}
+
+h1 {
+    color: rgb(250, 153, 205);
+    text-align: center;
+}
+
+#topicos {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    color: rgb(250, 153, 205);
+}
+
+a{
+    color: rgb(250, 153, 205);
+}
+
+p {
+    width: 900px;
+    margin: 15px auto;
+    font-size: 18px;
+    text-align: justify;
+}
+
+ol {
+    max-width: 480px;
+    margin: 20px auto;
+}
+
+#lista{
+    max-width: 250px;
+    margin: 20px auto;
+}
+
+li {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+hr {
+    border: rgb(250, 153, 205);
+    height: 2px;
+    background-color: rgb(250, 153, 205);
+    margin: 30px auto;
+    width: 80%;
+}
+
+.imagens {
+    margin-left: 150px;
+    margin-right: 150px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 25px;
+    padding-bottom: 10px;
+}
+
+.imagens::-webkit-scrollbar {
+    display: none;
+}
+img {
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.6);
+    cursor: pointer;
+}
+footer{
+    text-align: center;
+    font-size: 0.9rem;
+    height: 60px;
+}
+
+
