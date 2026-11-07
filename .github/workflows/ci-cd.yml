@@ -1,0 +1,76 @@
+name: CI/CD - GerminaFlix
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI - Validação do site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências (validador de HTML)
+        run: npm install -g htmlhint
+
+      - name: Validar HTML
+        run: htmlhint "*.html"
+
+      - name: Verificar se arquivos locais referenciados existem
+        run: |
+          erro=0
+          for pagina in *.html; do
+            grep -oE '(src|href)="[^"]+"' "$pagina" | sed -E 's/^(src|href)="//; s/"$//' | while read -r ref; do
+              case "$ref" in
+                http*|\#*|mailto:*) continue ;;
+              esac
+              if [ ! -f "$ref" ]; then
+                echo "::error file=$pagina::Arquivo não encontrado: $ref"
+                echo 1 > /tmp/falhou
+              fi
+            done
+          done
+          if [ -f /tmp/falhou ]; then exit 1; fi
+          echo "Todos os arquivos referenciados existem."
+
+  cd:
+    name: CD - Deploy no GitHub Pages
+    needs: ci
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Preparar arquivos do site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
